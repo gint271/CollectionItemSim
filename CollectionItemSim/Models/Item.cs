@@ -19,7 +19,7 @@ namespace CollectionItemSim.Models
     {
         public Rarity rarity;
         public int level; // Starts at 0, max is 15
-        public int xp; // Thik the max is always 1000 for blue, don't know purple.
+        public int xp;
         public static Random rand = new Random();
 
         public Item(Rarity rarity)
@@ -47,7 +47,7 @@ namespace CollectionItemSim.Models
 
             
 
-            //TODO: Are these values the same when used against a purple item?
+            //TODO: Are the superSuccessChance values the same when used against higher rarity collection items?
             switch(kitRarity)
             {
                 case Rarity.BLUE:
@@ -68,14 +68,12 @@ namespace CollectionItemSim.Models
 
             if (roll < superSuccessChance)
             {
-                Debug.WriteLine($"Roll of {roll} was less than requirement of {superSuccessChance}");
+                // Debug.WriteLine($"Roll of {roll} was less than requirement of {superSuccessChance}");
                 int tier = level / 5;
-
-                //TODO: Assume xp is set to 0 after super success.
                 level = 5 * (tier + 1);
                 xp = 0;
 
-                Debug.WriteLine($"Item is now level {level}");
+                // Debug.WriteLine($"Item is now level {level}");
                 return;
             } else
             {
@@ -97,7 +95,7 @@ namespace CollectionItemSim.Models
                     }
                 }
 
-                Debug.WriteLine($"Item is now level {level} with {xp} xp");
+                // Debug.WriteLine($"Item is now level {level} with {xp} xp");
 
                 return;
             }
